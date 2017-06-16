@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.6</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ximo" Version="2.0.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\XimoSample.Commands\XimoSample.Commands.csproj" />
+    <ProjectReference Include="..\..\Contracts\XimoSample.DomainEvents\XimoSample.DomainEvents.csproj" />
+  </ItemGroup>
+
+</Project>

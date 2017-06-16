@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.2" />
+    <PackageReference Include="Ximo.EntityFramework" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\XimoSample.Commands\XimoSample.Commands.csproj" />
+    <ProjectReference Include="..\Contracts\XimoSample.DomainEvents\XimoSample.DomainEvents.csproj" />
+    <ProjectReference Include="..\Contracts\XimoSample.Queries\XimoSample.Queries.csproj" />
+    <ProjectReference Include="..\Read\XimoSample.ReadModel\XimoSample.ReadModel.csproj" />
+    <ProjectReference Include="..\Write\XimoSample.Domain.Data\XimoSample.Domain.Data.csproj" />
+    <ProjectReference Include="..\Write\XimoSample.Domain\XimoSample.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
