@@ -1,3 +1,5 @@
 ﻿CREATE SCHEMA [Write]
     AUTHORIZATION [dbo];
 
+
+

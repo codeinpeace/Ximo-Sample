@@ -64,6 +64,7 @@
     <Folder Include="Write\" />
     <Folder Include="Write\Tables\" />
     <Folder Include="Security\" />
+    <Folder Include="Read\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Read\Tables\AccountDetails.sql" />
@@ -73,5 +74,9 @@
     <Build Include="Write\Tables\AccountNumber.sql" />
     <Build Include="Security\Read.sql" />
     <Build Include="Security\Write.sql" />
+    <Build Include="Read\Tables\SystemTagView.sql" />
+    <Build Include="Read\Tables\AccountDetailsView.sql" />
+    <Build Include="Read\Stored Procedures\HandleAccountEvent.sql" />
+    <Build Include="Read\Stored Procedures\ReinstateAccount.sql" />
   </ItemGroup>
 </Project>
