@@ -140,6 +140,7 @@ namespace XimoSample.Domain.Entities
             Status = new AccountStatus(Status.IsApproved, Status.ApprovedBy, true, e.Reason);
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private void Apply(AccountReinstated e)
         {
             Status = new AccountStatus(Status.IsApproved, Status.ApprovedBy, false, null);
