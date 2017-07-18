@@ -31,41 +31,45 @@ namespace SampleRunner
 
         private static void SimulateAccountProcessing(ICommandBus commandBus, IQueryProcessor queryProcessor)
         {
-            var newAccountId = Guid.NewGuid();
-            var createAccount = new CreateAccount(newAccountId, "Omar", @"Besiso", "ThoughtDesign",
-                RandomGenerator.GenerateRandomEmail());
-
-            try
+            for (int y = 0; y < 100; y++)
             {
-                commandBus.Send(createAccount);
+                var newAccountId = Guid.NewGuid();
+                var createAccount = new CreateAccount(newAccountId, "Omar", @"Besiso", "ThoughtDesign",
+                    RandomGenerator.GenerateRandomEmail());
 
-                //Simulate 2 snapshots
-                for (var i = 0; i < 20; i++)
+                try
                 {
-                    var updateAccount = new UpdateAccountAddress(newAccountId, $"Test {i}", null, null, null, null,
-                        "Australia");
-                    commandBus.Send(updateAccount);
+                    commandBus.Send(createAccount);
+
+                    //Simulate 2 snapshots
+                    for (var i = 0; i < 10; i++)
+                    {
+                        var updateAccount = new UpdateAccountAddress(newAccountId, $"Test {i}", null, null, null, null,
+                            "Australia");
+                        commandBus.Send(updateAccount);
+                    }
+
+                    var approveAccount = new ApproveAccount(newAccountId, "Omar Besiso");
+                    commandBus.Send(approveAccount);
+
+                    var deleteAccount = new DeleteAccount(newAccountId, "Testing");
+                    commandBus.Send(deleteAccount);
+
+                    var reinstateAccount = new ReinstateAccount(newAccountId);
+                    commandBus.Send(reinstateAccount);
+
+                    var query = new GetAccountDetailsById(newAccountId);
+                    var response = queryProcessor.ProcessQuery<GetAccountDetailsById, GetAccountDetailsByIdResponse>(query);
+
+                    Console.WriteLine(response.AccountDetailsDto.AccountId);
+                    Console.WriteLine(response.AccountDetailsDto.BusinessName);
                 }
-
-                var approveAccount = new ApproveAccount(newAccountId, "Omar Besiso");
-                commandBus.Send(approveAccount);
-
-                var deleteAccount = new DeleteAccount(newAccountId, "Testing");
-                commandBus.Send(deleteAccount);
-
-                var reinstateAccount = new ReinstateAccount(newAccountId);
-                commandBus.Send(reinstateAccount);
-
-                var query = new GetAccountDetailsById(newAccountId);
-                var response = queryProcessor.ProcessQuery<GetAccountDetailsById, GetAccountDetailsByIdResponse>(query);
-
-                Console.WriteLine(response.AccountDetailsDto.AccountId);
-                Console.WriteLine(response.AccountDetailsDto.BusinessName);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            
         }
 
         private static IServiceProvider Bootstrap()

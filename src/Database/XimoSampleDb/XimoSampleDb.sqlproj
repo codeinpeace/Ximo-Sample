@@ -79,4 +79,7 @@
     <Build Include="Read\Stored Procedures\HandleAccountEvent.sql" />
     <Build Include="Read\Stored Procedures\ReinstateAccount.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="XimoSampleDb.publish.xml" />
+  </ItemGroup>
 </Project>
