@@ -31,7 +31,7 @@ namespace SampleRunner
 
         private static void SimulateAccountProcessing(ICommandBus commandBus, IQueryProcessor queryProcessor)
         {
-            for (int y = 0; y < 100; y++)
+            for (int y = 0; y < 10; y++)
             {
                 var newAccountId = Guid.NewGuid();
                 var createAccount = new CreateAccount(newAccountId, "Omar", @"Besiso", "ThoughtDesign",
